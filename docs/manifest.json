@@ -1,9 +1,0 @@
-{
-  "name": "Meditracker",
-  "short_name": "Meditracker",
-  "start_url": "/Meditracker/docs/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#007bff",
-  "icons": []
-}
