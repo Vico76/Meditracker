@@ -1,0 +1,5 @@
+{
+  "name": "MédiTracker",
+  "description": "Une application simple pour suivre la prise de Doliprane et Ibuprofène avec un minuteur de sécurité de 6 heures.",
+  "requestFramePermissions": []
+}
