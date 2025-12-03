@@ -35,15 +35,15 @@ const App: React.FC = () => {
   }, []);
 
   const handleTake = useCallback((med: MedicationType) => {
-    if (confirm(`Confirmer la prise de ${med === 'doliprane' ? 'Doliprane' : 'Ibuprofène'} ?`)) {
-      setLastTaken(prev => ({
-        ...prev,
-        [med]: Date.now()
-      }));
-    }
+    // Action immédiate : on enregistre l'heure et on déclenche le timer directement
+    setLastTaken(prev => ({
+      ...prev,
+      [med]: Date.now()
+    }));
   }, []);
 
   const handleReset = useCallback((med: MedicationType) => {
+    // On garde la confirmation uniquement pour le reset (en cas d'erreur)
     if (confirm(`Réinitialiser le minuteur pour ${med === 'doliprane' ? 'Doliprane' : 'Ibuprofène'} ?`)) {
       setLastTaken(prev => ({
         ...prev,
@@ -64,7 +64,7 @@ const App: React.FC = () => {
   };
 
   const formatTime = (ms: number) => {
-    const totalSeconds = Math.floor(ms / 1000);
+    const totalSeconds = Math.max(0, Math.floor(ms / 1000));
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
@@ -109,7 +109,7 @@ const App: React.FC = () => {
               PRENDRE
             </button>
           ) : (
-            <div className="w-full py-4 bg-red-500 text-white rounded-xl font-bold text-xl shadow-inner flex flex-col items-center justify-center animate-pulse-slow">
+            <div className="w-full py-4 bg-red-500 text-white rounded-xl font-bold text-xl shadow-inner flex flex-col items-center justify-center animate-pulse-slow cursor-not-allowed select-none">
               <div className="flex items-center gap-2 mb-1">
                 <Clock size={20} />
                 <span>ATTENDRE</span>
